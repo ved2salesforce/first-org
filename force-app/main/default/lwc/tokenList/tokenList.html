@@ -1,0 +1,30 @@
+<template>
+  <lightning-card title="Tokens" icon-name="standard:contract">
+    <template lwc:if={isLoading}>
+      <lightning-spinner
+        alternative-text="Loading tokens..."
+        size="small"
+      ></lightning-spinner>
+    </template>
+    <template lwc:elseif={hasError}>
+      <div class="slds-p-around_medium slds-text-color_error">
+        <p>An error occurred loading tokens. Please refresh.</p>
+      </div>
+    </template>
+    <template lwc:elseif={hasTokens}>
+      <lightning-datatable
+        key-field="Id"
+        data={tokens}
+        columns={columns}
+        hide-checkbox-column
+      ></lightning-datatable>
+    </template>
+    <template lwc:else>
+      <div
+        class="slds-p-around_medium slds-text-align_center slds-text-color_weak"
+      >
+        <p>No tokens found for this account.</p>
+      </div>
+    </template>
+  </lightning-card>
+</template>
