@@ -102,6 +102,7 @@ public with sharing class TokenService {
     } catch (TokenServiceException e) {
       throw new AuraHandledException(e.getMessage());
     } catch (Exception e) {
+      System.debug(LoggingLevel.ERROR, 'issueTokenAura unexpected error: ' + e.getMessage() + '\n' + e.getStackTraceString());
       throw new AuraHandledException(e.getMessage());
     }
   }
@@ -118,6 +119,7 @@ public with sharing class TokenService {
     } catch (TokenServiceException e) {
       throw new AuraHandledException(e.getMessage());
     } catch (Exception e) {
+      System.debug(LoggingLevel.ERROR, 'revokeTokenAura unexpected error: ' + e.getMessage() + '\n' + e.getStackTraceString());
       throw new AuraHandledException(e.getMessage());
     }
   }

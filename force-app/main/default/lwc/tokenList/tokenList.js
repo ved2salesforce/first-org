@@ -12,10 +12,13 @@ const COLUMNS = [
   {
     label: "Status",
     fieldName: "Status__c",
-    type: "text",
-    cellAttributes: {
-      class: { fieldName: "statusClass" }
-    }
+    type: "button",
+    typeAttributes: {
+      label: { fieldName: "Status__c" },
+      variant: { fieldName: "statusVariant" },
+      disabled: true
+    },
+    cellAttributes: { alignment: "left" }
   },
   { label: "Issued Date", fieldName: "Issued_Date__c", type: "date" },
   { label: "Expiry Date", fieldName: "Expiry_Date__c", type: "date" },
@@ -36,7 +39,7 @@ export default class TokenList extends LightningElement {
     if (data) {
       this.tokens = data.map((token) => ({
         ...token,
-        statusClass: this._badgeVariantClass(token.Status__c)
+        statusVariant: STATUS_VARIANT_MAP[token.Status__c] || "neutral"
       }));
       this.hasError = false;
     } else if (error) {
@@ -50,6 +53,6 @@ export default class TokenList extends LightningElement {
   }
 
   _badgeVariantClass(status) {
-    return STATUS_VARIANT_MAP[status] || "default";
+    return STATUS_VARIANT_MAP[status] || "neutral";
   }
 }

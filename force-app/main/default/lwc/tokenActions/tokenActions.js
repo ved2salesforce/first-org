@@ -23,6 +23,14 @@ export default class TokenActions extends LightningElement {
   }
 
   handleIssueToken() {
+    if (!this.scope || !this.expiryDate) {
+      this._showToast(
+        "Validation Error",
+        "Scope and Expiry Date are required.",
+        "error"
+      );
+      return;
+    }
     issueTokenAura({
       accountId: this.recordId,
       expiryDateStr: this.expiryDate,

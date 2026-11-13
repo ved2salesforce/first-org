@@ -9,14 +9,7 @@ private class TokenExpiryBatchTest {
     // Active tokens that have already expired (negative daysUntilExpiry)
     List<Token__c> expired = new List<Token__c>();
     for (Integer i = 1; i <= 5; i++) {
-      Token__c t = new Token__c(
-        Owner_Account__c = acc.Id,
-        Status__c = 'Active',
-        Issued_Date__c = Date.today().addDays(-30),
-        Expiry_Date__c = Date.today().addDays(-i),
-        Scope__c = 'scope:' + i
-      );
-      expired.add(t);
+      expired.add(TestDataFactory.createToken(acc.Id, 'Active', -i, false));
     }
     insert expired;
     // Active token that is NOT expired yet

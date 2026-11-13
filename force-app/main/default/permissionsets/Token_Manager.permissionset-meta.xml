@@ -50,12 +50,4 @@
         <apexClass>TokenExpiryBatch</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>TokenListController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TokenActionsController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
 </PermissionSet>
