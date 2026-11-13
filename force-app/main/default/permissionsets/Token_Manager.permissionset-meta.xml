@@ -30,11 +30,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Token__c.Owner_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Token__c.Scope__c</field>
         <readable>true</readable>
     </fieldPermissions>
