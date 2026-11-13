@@ -32,8 +32,9 @@ private class TokenManagerPermSetTest {
     ];
 
     if (permSets.isEmpty()) {
-      // Permission set not deployed in this org — nothing to assert
-      return;
+      Assert.fail(
+        'Token_Manager permission set not found in this org. Cannot validate FLS entries.'
+      );
     }
 
     Id permSetId = permSets[0].Id;
@@ -72,7 +73,9 @@ private class TokenManagerPermSetTest {
     ];
 
     if (permSets.isEmpty()) {
-      return;
+      Assert.fail(
+        'Token_Manager permission set not found in this org. Cannot validate FLS entries.'
+      );
     }
 
     Id permSetId = permSets[0].Id;
@@ -92,11 +95,17 @@ private class TokenManagerPermSetTest {
         AND ParentId = :permSetId
     ];
 
+    Set<String> actualFields = new Set<String>();
+    for (FieldPermissions fp : flsEntries) {
+      actualFields.add(fp.Field);
+    }
+    Set<String> missingFields = expectedFields.clone();
+    missingFields.removeAll(actualFields);
+
     Assert.areEqual(
       expectedFields.size(),
       flsEntries.size(),
-      'Token_Manager permission set should retain FLS entries for Status__c, '
-        + 'Issued_Date__c, and Scope__c'
+      'Token_Manager is missing FLS entries for: ' + missingFields
     );
   }
 }
